@@ -8,6 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "emailjs-com"
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -16,13 +17,39 @@ export const ContactSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-    }, 1500);
+    emailjs
+    .sendForm(
+      "service_l78lw4w",
+      "template_7v8npfu",
+      e.target,
+      "RFpAmSO8Ko9Wan5AF"
+    )
+    .then (
+      (result) => {
+        console.log(result.text);
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        setIsSubmitting(false);
+      },
+      (error) => {
+        console.log(error.text);
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again later.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+      }
+    )
+    // setTimeout(() => {
+    //   toast({
+    //     title: "Message sent!",
+    //     description: "Thank you for your message. I'll get back to you soon.",
+    //   });
+    //   setIsSubmitting(false);
+    // }, 1500);
   };
 
   return (
