@@ -168,7 +168,7 @@ export const ContactSection = () => {
               </div>
               <div>
                 <ReCAPTCHA
-                  sitekey="6LfII8UrAAAAAD8ObQoCDj624b62C6gPl3_2qc14"
+                  sitekey="6Ld4JsUrAAAAAK-q742rrs4RaX3Gs9ZM_iQjh14-"
                   onChange={handleCaptcha}
                />
               </div>
