@@ -8,14 +8,28 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
-import emailjs from "emailjs-com"
+import emailjs from "emailjs-com";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captcha, setCaptcha] = useState(null);
+
+  const handleCaptcha = (value) => {
+    setCaptcha(value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!captcha) {
+      toast({
+        title: "reCAPTCHA required",
+        description: "Please verify you are not a robot.",
+        variant: "destructive",
+      });
+      return;
+    }
     setIsSubmitting(true);
     emailjs
     .sendForm(
@@ -152,7 +166,12 @@ export const ContactSection = () => {
                   placeholder="Hello, I'd like to talk about..."
                 />
               </div>
-
+              <div>
+                <ReCAPTCHA
+                  sitekey="6LfII8UrAAAAAD8ObQoCDj624b62C6gPl3_2qc14"
+                  onChange={handleCaptcha}
+               />
+              </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
