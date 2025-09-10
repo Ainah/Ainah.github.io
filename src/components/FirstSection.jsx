@@ -3,7 +3,7 @@ import { ArrowDown } from "lucide-react";
 export const FirstSection = () => {
   return (
     <section
-      id="First"
+      id="first"
       className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-br from-pink-100 via-white to-blue-100 overflow-hidden"
     >
       {/* radiant background layer */}
