@@ -31,9 +31,14 @@ export const Navbar = () => {
     >
       <div className="container flex items-center justify-between" >
         <a
-          className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
+          className="text-xl font-bold text-primary flex items-center gap-4"
+          href="#first"
         >
+          <img
+            src="/projects/profil.jpg" // <-- update this path to your actual image location
+            alt="Profile"
+            className="w-12 h-12 rounded-full object-cover border-2 border-primary"
+          />
           <span className="relative z-10">
             <span className="text-glow text-nav-foreground"> Murielle ZAFIMAHITA </span>{" "}
           </span>
